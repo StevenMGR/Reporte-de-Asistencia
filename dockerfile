@@ -1,13 +1,11 @@
-# Usamos la imagen oficial de PHP con Apache para PHP 8.1
-FROM php:8.1-apache
+# Usamos la imagen oficial de Nginx como base
+FROM nginx
 
-# Instalamos la extensión mysqli
-RUN docker-php-ext-install mysqli
+# Copiamos el archivo principal de HTML al directorio de contenido estático de Nginx
+COPY index.php /usr/share/nginx/html
 
-# Copiamos los archivos de nuestra aplicación al directorio de Apache
-COPY . /var/www/html
-
-# Apache escucha en el puerto 80 por defecto, pero si necesitas exponer otro puerto, puedes hacerlo aquí
+# Puerto en el que Nginx escuchará
 EXPOSE 80
 
-
+# Comando para iniciar Nginx en primer plano
+CMD ["nginx", "-g", "daemon off;"]
