@@ -2,8 +2,9 @@
 FROM nginx
 
 # Copiamos el archivo principal de HTML al directorio de contenido estático de Nginx
-COPY index.php /usr/share/nginx/html
+COPY ./php-attendance /usr/share/nginx/html
 
+COPY ./nginx-docker.conf /etc/nginx/conf.d/nginx-docker.conf
 # Puerto en el que Nginx escuchará
 EXPOSE 80
 
